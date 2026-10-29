@@ -1,0 +1,32 @@
+[advisories]
+yanked = "deny"
+ignore = [
+  # Pinned RuVector 2.4.0 transitively requires bincode 2.0.1; no safe upgrade exists.
+  "RUSTSEC-2025-0141",
+  # Regorus 0.5.0 transitively parses its trusted, repository-owned policy via
+  # serde_yaml/unsafe-libyaml. No fixed Regorus release is available; Context
+  # Bastion never accepts user-supplied YAML. See docs/security.md.
+  "RUSTSEC-2024-0449",
+]
+
+[licenses]
+allow = [
+  "MIT",
+  "Apache-2.0",
+  "BSD-2-Clause",
+  "BSD-3-Clause",
+  "ISC",
+  "Unicode-3.0",
+  "Zlib",
+  "OpenSSL",
+  "CC0-1.0",
+  "BSL-1.0",
+  "MIT-0",
+]
+
+[bans]
+multiple-versions = "warn"
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"

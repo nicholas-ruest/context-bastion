@@ -1,0 +1,42 @@
+openapi: 3.1.0
+info: {title: Context Bastion API, version: 1.0.0}
+servers: [{url: "http://127.0.0.1:8787"}]
+security: [{bearerAuth: []}]
+paths:
+  /healthz: {get: {security: [], responses: {"200": {description: healthy}}}}
+  /api/v1/sessions:
+    post:
+      operationId: createSession
+      requestBody: {required: true, content: {application/json: {schema: {$ref: "#/components/schemas/CreateSession"}}}}
+      responses: {"200": {description: created, content: {application/json: {schema: {$ref: "#/components/schemas/SessionView"}}}}, "401": {$ref: "#/components/responses/Error"}}
+  /api/v1/sessions/{id}:
+    get:
+      operationId: getSession
+      parameters: [{in: path, name: id, required: true, schema: {type: string}}]
+      responses: {"200": {description: recovered, content: {application/json: {schema: {$ref: "#/components/schemas/SessionView"}}}}, "404": {$ref: "#/components/responses/Error"}}
+  /api/v1/sessions/{id}/events:
+    post:
+      operationId: addEvent
+      parameters: [{in: path, name: id, required: true, schema: {type: string}}]
+      requestBody: {required: true, content: {application/json: {schema: {$ref: "#/components/schemas/AddEvent"}}}}
+      responses: {"200": {description: appended, content: {application/json: {schema: {$ref: "#/components/schemas/SessionView"}}}}, "422": {$ref: "#/components/responses/Error"}}
+  /api/v1/sessions/{id}/compact:
+    post:
+      operationId: compactSession
+      parameters: [{in: path, name: id, required: true, schema: {type: string}}]
+      responses: {"200": {description: compacted, content: {application/json: {schema: {$ref: "#/components/schemas/SessionView"}}}}}
+  /api/v1/sessions/{id}/actions:
+    post:
+      operationId: executeAction
+      parameters: [{in: path, name: id, required: true, schema: {type: string}}]
+      requestBody: {required: true, content: {application/json: {schema: {$ref: "#/components/schemas/Execute"}}}}
+      responses: {"200": {description: governed decision, content: {application/json: {schema: {$ref: "#/components/schemas/SessionView"}}}}}
+components:
+  securitySchemes: {bearerAuth: {type: http, scheme: bearer}}
+  responses: {Error: {description: typed error, content: {application/json: {schema: {$ref: "#/components/schemas/Error"}}}}}
+  schemas:
+    CreateSession: {type: object, required: [name], properties: {name: {type: string, minLength: 1}}}
+    AddEvent: {type: object, required: [role, source, content, authenticated], properties: {role: {enum: [user, assistant, tool, system]}, source: {type: string}, content: {type: string}, authenticated: {type: boolean}}}
+    Execute: {type: object, required: [verb, target, risk], properties: {verb: {type: string}, target: {type: string}, risk: {enum: [low, high]}, approval_event_id: {type: [string, "null"]}}}
+    SessionView: {type: object, required: [id, name, events, decisions, receipts, analogues], additionalProperties: true}
+    Error: {type: object, required: [code, message], properties: {code: {type: integer}, message: {type: string}}}

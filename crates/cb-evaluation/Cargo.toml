@@ -1,0 +1,10 @@
+[package]
+name="cb-evaluation"
+version.workspace=true
+edition.workspace=true
+license.workspace=true
+[dependencies]
+cb-types={path="../cb-types"}
+cb-provenance={path="../cb-provenance"}
+[lints]
+workspace=true

@@ -1,0 +1,11 @@
+[package]
+name="cb-seed"
+version.workspace=true
+edition.workspace=true
+license.workspace=true
+[dependencies]
+cb-types={path="../cb-types"}
+cb-event-ingest={path="../cb-event-ingest"}
+cb-session={path="../cb-session"}
+[lints]
+workspace=true

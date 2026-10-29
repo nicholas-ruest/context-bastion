@@ -1,0 +1,12 @@
+[package]
+name="cb-recall"
+version.workspace=true
+edition.workspace=true
+license.workspace=true
+[dependencies]
+cb-types={path="../cb-types"}
+cb-errors={path="../cb-errors"}
+cb-embedding={path="../cb-embedding"}
+cb-ruvector={path="../cb-ruvector"}
+[lints]
+workspace=true

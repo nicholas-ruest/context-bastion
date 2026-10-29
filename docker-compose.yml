@@ -1,0 +1,10 @@
+services:
+  api:
+    build: {context: ., dockerfile: Dockerfile.api}
+    environment: {BASTION_BIND: "0.0.0.0:8787", BASTION_DATA_DIR: "/data", BASTION_NAMESPACE: "compose-test"}
+    ports: ["8787:8787"]
+    volumes: ["bastion-data:/data"]
+  web:
+    build: {context: ., dockerfile: Dockerfile.web}
+    ports: ["4173:80"]
+volumes: {bastion-data: {}}

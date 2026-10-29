@@ -1,0 +1,12 @@
+[package]
+name="cb-regorus"
+version.workspace=true
+edition.workspace=true
+license.workspace=true
+[dependencies]
+cb-types={path="../cb-types"}
+cb-errors={path="../cb-errors"}
+regorus={workspace=true}
+serde_json={workspace=true}
+[lints]
+workspace=true
