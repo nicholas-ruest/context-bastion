@@ -1,0 +1,11 @@
+[package]
+name="cb-middleware"
+version.workspace=true
+edition.workspace=true
+license.workspace=true
+[dependencies]
+cb-auth={path="../cb-auth"}
+cb-errors={path="../cb-errors"}
+uuid={workspace=true}
+[lints]
+workspace=true

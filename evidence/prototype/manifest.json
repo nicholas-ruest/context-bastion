@@ -1,0 +1,1 @@
+{"schema_version":2,"status":"EXTERNAL_CI_ARTIFACT","note":"Runtime proof is an external GitHub Actions artifact. This repository file is only its readback pointer; never replace its source SHA without a new run.","workflow":"ci.yml","artifact_name_pattern":"context-bastion-evidence-<tested-source-sha>"}

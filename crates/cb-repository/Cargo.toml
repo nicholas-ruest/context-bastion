@@ -1,0 +1,12 @@
+[package]
+name="cb-repository"
+version.workspace=true
+edition.workspace=true
+license.workspace=true
+[dependencies]
+cb-types={path="../cb-types"}
+cb-errors={path="../cb-errors"}
+cb-rvf={path="../cb-rvf"}
+serde_json={workspace=true}
+[lints]
+workspace=true

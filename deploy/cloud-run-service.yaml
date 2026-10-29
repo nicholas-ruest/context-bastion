@@ -1,0 +1,14 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata: {name: context-bastion-api}
+spec:
+  template:
+    metadata: {annotations: {autoscaling.knative.dev/maxScale: "5"}}
+    spec:
+      serviceAccountName: context-bastion-runtime
+      containers:
+        - image: REGION-docker.pkg.dev/PROJECT/context-bastion/api:SOURCE_SHA
+          ports: [{containerPort: 8787}]
+          env:
+            - {name: BASTION_BIND, value: "0.0.0.0:8787"}
+            - {name: BASTION_NAMESPACE, value: "production"}

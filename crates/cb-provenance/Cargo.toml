@@ -1,0 +1,12 @@
+[package]
+name="cb-provenance"
+version.workspace=true
+edition.workspace=true
+license.workspace=true
+[dependencies]
+cb-types={path="../cb-types"}
+cb-errors={path="../cb-errors"}
+sha2={workspace=true}
+hex={workspace=true}
+[lints]
+workspace=true

@@ -1,0 +1,1 @@
+import{readFileSync}from'node:fs';const spec=readFileSync('../openapi/context-bastion-v1.yaml','utf8');const client=readFileSync('src/client.ts','utf8');for(const p of ['/api/v1/sessions','/events','/compact','/actions'])if(!spec.includes(p)&&!client.includes(p))throw new Error('missing contract path '+p);console.log('API_CLIENT_CONTRACT_PASS');

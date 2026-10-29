@@ -1,0 +1,9 @@
+[package]
+name="cb-auth"
+version.workspace=true
+edition.workspace=true
+license.workspace=true
+[dependencies]
+cb-errors={path="../cb-errors"}
+[lints]
+workspace=true

@@ -1,0 +1,1 @@
+import{describe,it,expect}from'vitest';import type{Session}from'./client';describe('typed contract',()=>{it('retains provenance roles',()=>{const x:Session={id:'s',name:'n',events:[],decisions:[],receipts:[],analogues:[]};expect(x.events).toEqual([])})});
